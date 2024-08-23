@@ -1,0 +1,15 @@
+# Laravel specific files
+/vendor
+/node_modules
+/.env
+
+# Docker specific files
+/docker-compose.override.yml
+/db-data
+
+# MySQL socket file
+/docker/db/data/mysql.sock
+
+# Other temporary or unnecessary files
+/docker/db/data/*.opt
+/docker/db/data/*.cnf
