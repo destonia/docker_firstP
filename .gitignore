@@ -11,5 +11,9 @@
 /docker/db/data/mysql.sock
 
 # Other temporary or unnecessary files
-/docker/db/data/*.opt
-/docker/db/data/*.cnf
+docker/db/data/*.opt
+docker/db/data/*.cnf
+docker/db/data/*.opt
+docker/db/data/*.cnf
+docker/db/data/*.ib*
+docker/db/data/*.log
