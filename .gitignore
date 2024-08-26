@@ -1,19 +1,15 @@
 # Laravel specific files
-/vendor
-/node_modules
-/.env
+laravel_docker/vendor
+laravel_docker/node_modules
+laravel_docker/.env
 
 # Docker specific files
 /docker-compose.override.yml
-/db-data
 
-# MySQL socket file
-/docker/db/data/mysql.sock
+# Exclude MySQL data directory entirely
+laravel_docker/docker/db/data/
+docker/db/data/
 
-# Other temporary or unnecessary files
-docker/db/data/*.opt
-docker/db/data/*.cnf
-docker/db/data/*.opt
-docker/db/data/*.cnf
-docker/db/data/*.ib*
-docker/db/data/*.log
+# Optional: You can also exclude the Docker build context if needed
+laravel_docker/docker/app/
+laravel_docker/docker/nginx/
