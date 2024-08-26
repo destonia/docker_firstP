@@ -3,6 +3,9 @@ laravel_docker/vendor
 laravel_docker/node_modules
 laravel_docker/.env
 
+# log
+frontend/yarn.lock
+
 # Docker specific files
 /docker-compose.override.yml
 
