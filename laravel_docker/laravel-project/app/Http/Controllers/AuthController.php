@@ -29,6 +29,7 @@ class AuthController extends Controller
         // If login fails
         return response()->json([
             'message' => 'Invalid login credentials',
+            'code' => '001',
         ], 401);
     }
 }

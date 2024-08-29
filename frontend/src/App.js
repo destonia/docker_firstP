@@ -1,21 +1,28 @@
-import React from 'react';
-import Header from './components/Header/Header';
-import Sidebar from './components/Sidebar/Sidebar';
-import MainBody from './components/MainBody/MainBody';
-import Footer from './components/Footer/Footer';
-import styles from './App.module.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './components/Login/Login';
+import ProtectedRoute from './components/ProtectedRoute';
+import Home from './pages/Home';
+import Dashboard from './pages/Dashboard/Dashboard';
+import { useAuth } from './contexts/AuthContext';
 
 function App() {
-  return (
-    <div className={styles.container}>
-      <Header />
-      <div className={styles.content}>
-        <Sidebar />
-        <MainBody />
-      </div>
-      <Footer />
-    </div>
-  );
+	const { isAuthenticated } = useAuth();
+	return (
+		<Router>
+			<Routes>
+				{/* Route for the login page */}
+					<Route path="/login" element={<Login />} />
+
+					<Route path="/admin/*" element={<ProtectedRoute element={Home} isAuthenticated={isAuthenticated} />} />
+					<Route path="/dashboard" element={<ProtectedRoute element={Dashboard} isAuthenticated={isAuthenticated} />} />
+
+
+				{/* Route for the rest of the app */}
+				<Route path="*"	element={<Home />}/>
+			</Routes>
+		</Router>
+	);
 }
 
 export default App;

@@ -1,0 +1,23 @@
+/* src/pages/Dashboard.css */
+
+.dashboard-container {
+	padding: 20px;
+	font-family: Arial, sans-serif;
+}
+
+.dashboard-nav-list {
+	list-style-type: none;
+	padding: 0;
+}
+
+.dashboard-link {
+	text-decoration: none;
+	color: #007bff;
+	font-size: 18px;
+	display: block;
+	margin: 5px 0;
+}
+
+.dashboard-link:hover {
+	text-decoration: underline;
+}
