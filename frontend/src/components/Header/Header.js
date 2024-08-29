@@ -4,7 +4,7 @@ import styles from './Header.module.css'; // Import CSS Module
 function Header() {
   return (
     <header className={styles.header}>
-      <h1>thanh nat</h1>
+      <h1>thanh khong nat</h1>
     </header>
   );
 }
