@@ -9,27 +9,23 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        // Validate the login credentials
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        $credentials = $request->only('email', 'password');
 
-        // Attempt to log the user in
-        if (Auth::attempt($request->only('email', 'password'))) {
-            // If successful, generate a token (if using Sanctum, Passport, etc.)
-            $token = $request->user()->createToken('authToken')->plainTextToken;
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-            return response()->json([
-                'message' => 'Login successful',
-                'token' => $token,
-            ]);
+            return response()->json(['message' => 'Login successful'], 200);
         }
 
-        // If login fails
-        return response()->json([
-            'message' => 'Invalid login credentials',
-            'code' => '001',
-        ], 401);
+        return response()->json(['message' => 'Invalid credentials'], 401);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return response()->json(['message' => 'Logged out'], 200);
     }
 }
