@@ -1,6 +1,12 @@
+@media (max-width: 768px) {
+    .sidebar {
+      width: 200px; /* Adjust width for smaller screens */
+    }
+}
 .sidebar {
     background-color: #f4f4f4;
-    padding: 20px;
+    padding: 0 10px;
+    margin: 0 10px 0 0;
     width: 200px;
 }
   

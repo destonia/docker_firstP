@@ -1,0 +1,39 @@
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .name {
+    margin: 10px 0;
+    font-size: 1.5rem;
+  }
+  
+  .price {
+    font-size: 1.2rem;
+    color: #2c3e50;
+  }
+  
+  .rating {
+    margin-top: 10px;
+  }
+  
+  .star {
+    font-size: 1.2rem;
+    color: #ffd700; /* Gold color for filled stars */
+  }
+  
+  .star.filled {
+    color: #ffd700; /* Gold color for filled stars */
+  }
+  

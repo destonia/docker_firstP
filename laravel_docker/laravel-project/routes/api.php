@@ -33,3 +33,9 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+
+
+//frontend
+use App\Http\Controllers\ProductController;
+Route::get('/products', [ProductController::class, 'index']);
+
