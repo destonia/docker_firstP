@@ -1,38 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import styles from './ItemsPage.module.css';
+import React, { useState, useCallback } from 'react';
+import styles from './ItemsPage.module.css'; // Ensure path is correct
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Card from '../../components/Card/Card';
+import Modal from '../../components/Modal/Modal';
+import ProductForm from '../../components/ProductForm/ProductForm';
+import useFetchProducts from '../../hooks/useFetchProducts';
+import CategoryFilterBar from '../../components/CategoryFilterBar/CategoryFilterBar';
 
 const SearchAndCards = () => {
+    const [selectedCategories, setSelectedCategories] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [cards, setCards] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const response = await fetch('http://localhost:8000/api/products');
-				if (!response.ok) {
-					throw new Error('Network response was not ok');
-				}
-				const data = await response.json();
-				// Ensure data is an array
-				if (Array.isArray(data)) {
-					setCards(data);
-				} else {
-					console.error('Expected an array but received:', data);
-				}
-			} catch (error) {
-				setError(error.message);
-			} finally {
-				setLoading(false);
-			}
-		};
-	
-		fetchData();
-	}, []);
+    // Fetch products based on selected categories
+    const { cards, loading, error } = useFetchProducts(selectedCategories);
 
+    // Handle category selection changes
+    const handleCategoryChange = useCallback((categoryIds) => {
+        setSelectedCategories(categoryIds);
+    }, []);
+
+    // Filter cards based on search term
     const filteredCards = cards.filter(card =>
         card.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -47,7 +35,23 @@ const SearchAndCards = () => {
 
     return (
         <div className={styles.container}>
-            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            <div className={styles.filtersContainer}>
+                <div className={styles.searchBar}>
+                    <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+                </div>
+                <div className={styles.categoryFilterBar}>
+                    <CategoryFilterBar onChange={handleCategoryChange} />
+                </div>
+            </div>
+            <div className={styles.buttonContainer}>
+                {/* <button onClick={() => setIsModalOpen(true)}>Open Modal</button> */}
+                <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                    <div>
+                        <h1>Product Form</h1>
+                        <ProductForm />
+                    </div>
+                </Modal>
+            </div>
             <div className={styles.cardContainer}>
                 {filteredCards.map((card) => (
                     <Card

@@ -4,10 +4,12 @@
     }
 }
 .sidebar {
+    min-width: 200px; /* Set width */
+    height: 100vh; /* Full viewport height */
+    overflow: auto; /* Add scroll if content overflows */
     background-color: #f4f4f4;
     padding: 0 10px;
     margin: 0 10px 0 0;
-    width: 200px;
 }
   
 .sidebar ul {

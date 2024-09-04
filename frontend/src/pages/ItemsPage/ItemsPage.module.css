@@ -1,5 +1,28 @@
+/* ItemsPage.module.css */
 .itemsPage {
     margin: 20px;
+}
+
+.filtersContainer {
+    display: flex;
+    width: 100%;
+    max-width: 1000px; /* Adjust based on your design */
+    margin-bottom: 20px;
+}
+
+.searchBar {
+    flex: 1;
+    max-width: 300px; /* Fixed width for SearchBar */
+    margin-right: 20px; /* Space between filters */
+}
+
+.categoryFilterBar {
+    flex: 1;
+    max-width: 300px; /* Fixed width for CategoryFilterBar */
+}
+
+.buttonContainer {
+    margin-bottom: 20px;
 }
 
 .cardContainer {
@@ -9,14 +32,18 @@
     justify-content: flex-start;
 }
 
+.card {
+    width: calc(33.333% - 20px); /* Default width for larger screens */
+}
+
 @media (max-width: 768px) {
     .card {
-        width: calc(50% - 20px);
+        width: calc(50% - 20px); /* Adjust width for medium screens */
     }
 }
 
 @media (max-width: 480px) {
     .card {
-        width: calc(100% - 20px);
+        width: calc(100% - 20px); /* Adjust width for smaller screens */
     }
 }
